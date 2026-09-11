@@ -1,0 +1,279 @@
+<!-- Personal Information Form -->
+<section class="profile-section personal-form-section">
+
+    <div class="profile-section-title">
+        <span>👤</span>
+        <div>
+            <h2>Personal Information</h2>
+            <p>Update your personal details</p>
+        </div>
+    </div>
+<img src="C:\Users\admin\Desktop\My Website" width="300">
+
+        <div class="personal-form-grid">
+
+            <!-- Full Name -->
+            <div class="personal-form-group">
+                <label for="personalName">Full Name</label>
+                <input
+                    type="text"
+                    id="personalName"
+                    placeholder="Enter your full name"
+                    required
+                >
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="personal-form-group">
+                <label for="personalDob">Date of Birth</label>
+                <input
+                    type="date"
+                    id="personalDob"
+                >
+            </div>
+
+            <!-- Gender -->
+            <div class="personal-form-group">
+                <label for="personalGender">Gender</label>
+                <select id="personalGender">
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Phone -->
+            <div class="personal-form-group">
+                <label for="personalPhone">Phone Number</label>
+                <input
+                    type="tel"
+                    id="personalPhone"
+                    placeholder="Enter phone number"
+                >
+            </div>
+
+            <!-- Email -->
+            <div class="personal-form-group">
+                <label for="personalEmail">Email</label>
+                <input
+                    type="email"
+                    id="personalEmail"
+                    placeholder="Enter email"
+                >
+            </div>
+
+            <!-- Profession -->
+            <div class="personal-form-group">
+                <label for="personalProfession">Profession</label>
+                <input
+                    type="text"
+                    id="personalProfession"
+                    placeholder="e.g. Web Developer"
+                >
+            </div>
+
+            <!-- Education -->
+            <div class="personal-form-group">
+                <label for="personalEducation">Education</label>
+                <input
+                    type="text"
+                    id="personalEducation"
+                    placeholder="e.g. B.Sc. Computer Science"
+                >
+            </div>
+
+            <!-- Nationality -->
+            <div class="personal-form-group">
+                <label for="personalNationality">Nationality</label>
+                <input
+                    type="text"
+                    id="personalNationality"
+                    placeholder="INDIA"
+                >
+            </div>
+
+            <!-- Address -->
+            <div class="personal-form-group full-width">
+                <label for="personalAddress">Address</label>
+                <textarea
+                    id="personalAddress"
+                    rows="3"
+                    placeholder="Enter your address"
+                ></textarea>
+            </div>
+
+            <!-- About -->
+            <div class="personal-form-group full-width">
+                <label for="personalAbout">About Me</label>
+                <textarea
+                    id="personalAbout"
+                    rows="5"
+                    placeholder="Write something about yourself..."
+                ></textarea>
+            </div>
+
+        </div>
+
+        <div class="personal-form-actions">
+            <button type="submit" class="profile-save">
+                Save Personal Information
+            </button>
+
+            <span id="personalFormMessage"></span>
+        </div>
+
+    </form>
+
+</section>
+<script>
+
+const form = document.getElementById("personalInfoForm");
+const photoInput = document.getElementById("photo");
+const preview = document.getElementById("preview");
+const message = document.getElementById("personalFormMessage");
+
+let user = JSON.parse(
+    localStorage.getItem("registeredUser")
+) || {};
+
+
+/* =========================
+   LOAD SAVED PHOTO
+========================= */
+
+if (user.photo) {
+    preview.src = user.photo;
+    preview.style.display = "block";
+}
+
+
+/* =========================
+   PHOTO PREVIEW
+========================= */
+
+photoInput.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+
+        preview.src = e.target.result;
+        preview.style.display = "block";
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* =========================
+   LOAD SAVED INFORMATION
+========================= */
+
+document.getElementById("personalName").value =
+    user.name || "";
+
+document.getElementById("personalDob").value =
+    user.dateOfBirth || "";
+
+document.getElementById("personalGender").value =
+    user.gender || "";
+
+document.getElementById("personalPhone").value =
+    user.phone || "";
+
+document.getElementById("personalEmail").value =
+    user.email || "";
+
+document.getElementById("personalProfession").value =
+    user.profession || "";
+
+document.getElementById("personalEducation").value =
+    user.education || "";
+
+document.getElementById("personalNationality").value =
+    user.nationality || "";
+
+document.getElementById("personalAddress").value =
+    user.address || "";
+
+document.getElementById("personalAbout").value =
+    user.bio || "";
+
+
+/* =========================
+   SAVE FORM
+========================= */
+
+form.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+
+    user.name =
+        document.getElementById("personalName").value;
+
+    user.dateOfBirth =
+        document.getElementById("personalDob").value;
+
+    user.gender =
+        document.getElementById("personalGender").value;
+
+    user.phone =
+        document.getElementById("personalPhone").value;
+
+    user.email =
+        document.getElementById("personalEmail").value;
+
+    user.profession =
+        document.getElementById("personalProfession").value;
+
+    user.education =
+        document.getElementById("personalEducation").value;
+
+    user.nationality =
+        document.getElementById("personalNationality").value;
+
+    user.address =
+        document.getElementById("personalAddress").value;
+
+    user.bio =
+        document.getElementById("personalAbout").value;
+
+
+    /* SAVE PHOTO */
+
+    if (preview.src && preview.src.startsWith("data:image")) {
+        user.photo = preview.src;
+    }
+
+
+    /* SAVE EVERYTHING */
+
+    localStorage.setItem(
+        "registeredUser",
+        JSON.stringify(user)
+    );
+
+
+    /* SUCCESS MESSAGE */
+
+    message.textContent =
+        "✓ Information and photo saved successfully";
+
+    message.style.color = "green";
+
+
+    setTimeout(function() {
+        message.textContent = "";
+    }, 3000);
+
+});
+
+</script>

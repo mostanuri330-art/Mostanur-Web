@@ -1,0 +1,2642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Dashboard</title>
+
+<style>
+/* =========================================================
+   STUDY DASHBOARD — PREMIUM UI
+========================================================= */
+
+:root {
+    --bg: #070b16;
+    --bg-soft: #0c1222;
+    --card: rgba(17, 25, 45, 0.82);
+    --card-2: rgba(20, 30, 54, 0.72);
+
+    --text: #f5f7ff;
+    --muted: #8e9ab5;
+
+    --primary: #6d7cff;
+    --primary-2: #8b5cf6;
+    --cyan: #22d3ee;
+    --green: #34d399;
+    --orange: #f59e0b;
+    --red: #fb7185;
+
+    --border: rgba(255,255,255,0.08);
+
+    --sidebar-width: 260px;
+    --radius: 22px;
+
+    --shadow:
+        0 20px 60px rgba(0,0,0,0.35);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(109,124,255,0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(139,92,246,0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 70% 90%,
+            rgba(34,211,238,0.08),
+            transparent 28%
+        ),
+        var(--bg);
+
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   BACKGROUND EFFECTS
+========================================================= */
+
+.background-orb {
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.orb-one {
+    background: #6d7cff;
+    top: -180px;
+    left: 15%;
+    animation: floatOrb 12s ease-in-out infinite;
+}
+
+.orb-two {
+    background: #22d3ee;
+    right: -200px;
+    bottom: 5%;
+    animation: floatOrb 15s ease-in-out infinite reverse;
+}
+
+@keyframes floatOrb {
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(30px,-30px);
+    }
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    padding: 24px 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(13,19,35,0.97),
+            rgba(7,11,22,0.98)
+        );
+
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+
+    transition:
+        transform .35s ease,
+        width .35s ease;
+}
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 6px 10px 28px;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    font-size: 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-2)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(109,124,255,.3);
+}
+
+.logo-text strong {
+    display: block;
+    font-size: 15px;
+    letter-spacing: .8px;
+}
+
+.logo-text span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+/* NAV */
+
+.nav-title {
+    padding: 0 12px;
+    margin-bottom: 10px;
+
+    color: #596680;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav a {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 12px 13px;
+
+    border-radius: 13px;
+
+    color: #9ca8c0;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: .25s ease;
+}
+
+.nav a span:first-child {
+    width: 21px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    color: white;
+    background: rgba(255,255,255,.055);
+    transform: translateX(4px);
+}
+
+.nav a.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(109,124,255,.18),
+            rgba(109,124,255,.04)
+        );
+
+    border: 1px solid rgba(109,124,255,.18);
+}
+
+.nav a.active::before {
+    content: "";
+
+    position: absolute;
+    left: -1px;
+    top: 25%;
+
+    width: 3px;
+    height: 50%;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* SIDEBAR BOTTOM */
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 15px;
+
+    border-top: 1px solid var(--border);
+}
+
+.sidebar-bottom a {
+    margin-top: 5px;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+    margin-left: var(--sidebar-width);
+
+    min-height: 100vh;
+
+    padding: 25px 32px 60px;
+
+    transition: margin-left .35s ease;
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    min-height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.breadcrumb {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.breadcrumb strong {
+    color: white;
+}
+
+/* HAMBURGER */
+
+.menu-button {
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    background: rgba(255,255,255,.04);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.menu-button span {
+    width: 20px;
+    height: 2px;
+
+    border-radius: 5px;
+
+    background: white;
+
+    transition: .3s ease;
+}
+
+.menu-button:hover {
+    background: rgba(109,124,255,.15);
+    border-color: rgba(109,124,255,.35);
+}
+
+.menu-button.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-button.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* USER */
+
+.top-user {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.user-info {
+    text-align: right;
+}
+
+.user-info strong {
+    display: block;
+    font-size: 13px;
+}
+
+.user-info span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-2)
+        );
+
+    font-weight: 800;
+    font-size: 13px;
+
+    box-shadow:
+        0 8px 25px rgba(109,124,255,.25);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 255px;
+
+    padding: 34px;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(109,124,255,.20),
+            rgba(139,92,246,.13),
+            rgba(34,211,238,.07)
+        );
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    box-shadow: var(--shadow);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    right: -90px;
+    top: -120px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(109,124,255,.32),
+            transparent 70%
+        );
+
+    animation: heroGlow 7s ease-in-out infinite;
+}
+
+@keyframes heroGlow {
+    50% {
+        transform: scale(1.15);
+        opacity: .7;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.08);
+
+    color: #aeb8d1;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 4vw, 43px);
+
+    line-height: 1.08;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #8fa0ff,
+            #c084fc,
+            #67e8f9
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 580px;
+
+    color: #a4aec5;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    margin-bottom: 23px;
+}
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-2)
+        );
+
+    box-shadow:
+        0 12px 28px rgba(109,124,255,.25);
+
+    transition: .3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 18px 35px rgba(109,124,255,.35);
+}
+
+/* HERO PROGRESS */
+
+.hero-progress {
+    position: relative;
+    z-index: 2;
+
+    width: 155px;
+    height: 155px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        conic-gradient(
+            var(--cyan) 0deg 309deg,
+            rgba(255,255,255,.07) 309deg 360deg
+        );
+
+    box-shadow:
+        0 0 50px rgba(34,211,238,.08);
+}
+
+.hero-progress::before {
+    content: "";
+
+    position: absolute;
+
+    width: 125px;
+    height: 125px;
+
+    border-radius: 50%;
+
+    background: #0d1528;
+
+    border: 1px solid rgba(255,255,255,.06);
+}
+
+.progress-content {
+    position: relative;
+    text-align: center;
+}
+
+.progress-content strong {
+    display: block;
+
+    font-size: 28px;
+}
+
+.progress-content span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+.section-head h2 {
+    font-size: 16px;
+    letter-spacing: -.3px;
+}
+
+.section-head span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    position: relative;
+
+    padding: 19px;
+
+    border-radius: var(--radius);
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    overflow: hidden;
+
+    transition: .3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(109,124,255,.25);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 14px;
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: rgba(109,124,255,.11);
+
+    font-size: 18px;
+}
+
+.stat-change {
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.stat-card h3 {
+    font-size: 23px;
+    margin-bottom: 4px;
+}
+
+.stat-card p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(300px, .75fr);
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 21px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.13);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.card-title h2 {
+    font-size: 15px;
+}
+
+.card-title span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* =========================================================
+   CONTINUE LEARNING
+========================================================= */
+
+.learning-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.learning-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 12px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid transparent;
+
+    transition: .25s ease;
+}
+
+.learning-item:hover {
+    border-color: rgba(109,124,255,.22);
+
+    background: rgba(109,124,255,.06);
+
+    transform: translateX(3px);
+}
+
+.learning-icon {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(109,124,255,.20),
+            rgba(139,92,246,.12)
+        );
+
+    font-size: 19px;
+}
+
+.learning-info {
+    flex: 1;
+}
+
+.learning-info strong {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.learning-info span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.learning-progress {
+    margin-top: 7px;
+
+    width: 100%;
+    height: 4px;
+
+    background: rgba(255,255,255,.06);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.learning-progress i {
+    display: block;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--cyan)
+        );
+}
+
+.open-arrow {
+    color: #7f8baa;
+    font-size: 17px;
+}
+
+/* =========================================================
+   TODAY PLAN
+========================================================= */
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.schedule-item {
+    display: grid;
+
+    grid-template-columns: 60px 1fr 28px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    border-radius: 13px;
+
+    background: rgba(255,255,255,.035);
+}
+
+.schedule-time {
+    color: var(--cyan);
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.schedule-info strong {
+    display: block;
+
+    font-size: 11px;
+
+    margin-bottom: 3px;
+}
+
+.schedule-info span {
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+.schedule-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 12px rgba(52,211,153,.55);
+}
+
+/* =========================================================
+   SUBJECT PROGRESS
+========================================================= */
+
+.subject-list {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.subject-row {
+    display: grid;
+
+    grid-template-columns: 80px 1fr 38px;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.subject-name {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.subject-bar {
+    height: 7px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.06);
+
+    overflow: hidden;
+}
+
+.subject-bar i {
+    display: block;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--cyan)
+        );
+}
+
+.subject-percent {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    text-align: right;
+}
+
+/* =========================================================
+   TASKS
+========================================================= */
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 11px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.035);
+}
+
+.task-check {
+    width: 19px;
+    height: 19px;
+
+    border: 1px solid #596680;
+
+    border-radius: 6px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.task.done .task-check {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.task.done .task-check::after {
+    content: "✓";
+
+    color: #06130d;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.task.done strong {
+    text-decoration: line-through;
+    color: #68748e;
+}
+
+.task strong {
+    font-size: 11px;
+}
+
+.task span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+/* =========================================================
+   BOTTOM CARDS
+========================================================= */
+
+.bottom-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+    gap: 18px;
+}
+
+.mini-feature {
+    position: relative;
+
+    min-height: 150px;
+
+    overflow: hidden;
+}
+
+.mini-feature::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -30px;
+    bottom: -30px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(109,124,255,.18),
+            transparent 70%
+        );
+}
+
+.feature-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    margin-bottom: 15px;
+
+    background: rgba(109,124,255,.1);
+
+    font-size: 19px;
+}
+
+.mini-feature h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.mini-feature p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    margin-bottom: 13px;
+}
+
+.text-link {
+    color: #9ba9ff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+.text-link:hover {
+    color: white;
+}
+
+/* =========================================================
+   MOBILE OVERLAY
+========================================================= */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.55);
+
+    backdrop-filter: blur(3px);
+
+    z-index: 900;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+    }
+
+    .bottom-grid {
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+    }
+
+}
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0;
+
+        padding:
+            20px
+            18px
+            50px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding: 27px;
+
+        gap: 25px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .top-user .user-info {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-progress {
+        width: 120px;
+        height: 120px;
+        align-self: center;
+    }
+
+    .hero-progress::before {
+        width: 96px;
+        height: 96px;
+    }
+
+    .progress-content strong {
+        font-size: 23px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    .subject-row {
+        grid-template-columns: 68px 1fr 35px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+}
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    animation:
+        reveal .65s ease forwards;
+}
+
+.reveal:nth-child(2) {
+    animation-delay: .08s;
+}
+
+.reveal:nth-child(3) {
+    animation-delay: .16s;
+}
+
+.reveal:nth-child(4) {
+    animation-delay: .24s;
+}
+
+@keyframes reveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Background -->
+<div class="background-orb orb-one"></div>
+<div class="background-orb orb-two"></div>
+
+<!-- Mobile overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            📚
+        </div>
+
+        <div class="logo-text">
+            <strong>STUDY HUB</strong>
+            <span>Student Dashboard</span>
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        Workspace
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="#dashboard" class="active">
+            <span>⌂</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="study-materials.html">
+            <span>📚</span>
+            <span>Study Materials</span>
+        </a>
+
+        <a href="#subjects">
+            <span>📖</span>
+            <span>Subjects</span>
+        </a>
+
+        <a href="#notes">
+            <span>📝</span>
+            <span>My Notes</span>
+        </a>
+
+        <a href="#progress">
+            <span>🎯</span>
+            <span>Study Progress</span>
+        </a>
+
+        <a href="#planner">
+            <span>⏱️</span>
+            <span>Study Planner</span>
+        </a>
+
+        <a href="#schedule">
+            <span>📅</span>
+            <span>Study Schedule</span>
+        </a>
+
+        <a href="#tasks">
+            <span>✅</span>
+            <span>Tasks & Assignments</span>
+        </a>
+
+        <a href="#quizzes">
+            <span>🧠</span>
+            <span>Quizzes & Practice</span>
+        </a>
+
+        <a href="#bookmarks">
+            <span>🔖</span>
+            <span>Bookmarks</span>
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="index.html">
+            <span>←</span>
+            <span>Back to Website</span>
+        </a>
+
+        <a href="#" id="logoutButton">
+            <span>↪</span>
+            <span>Logout</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main" id="dashboard">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div class="top-left">
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Toggle menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="breadcrumb">
+                STUDENT / <strong>DASHBOARD</strong>
+            </div>
+
+        </div>
+
+
+        <div class="top-user">
+
+            <div class="user-info">
+
+                <strong id="dashboardName">
+                    Student
+                </strong>
+
+                <span id="dashboardEmail">
+                    student@email.com
+                </span>
+
+            </div>
+
+            <div
+                class="avatar"
+                id="dashboardAvatar"
+            >
+                U
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         HERO
+    ================================================= -->
+
+    <section class="hero reveal">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                ✨ Your learning space
+            </div>
+
+            <h1>
+                Welcome back,
+                <span id="welcomeName">Student</span>
+            </h1>
+
+            <p>
+                Keep your momentum going. Review your materials,
+                complete today's tasks, and continue building
+                your knowledge one session at a time.
+            </p>
+
+            <a
+                href="study-materials.html"
+                class="primary-btn"
+            >
+                Continue Studying
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <div class="hero-progress">
+
+            <div class="progress-content">
+
+                <strong>86%</strong>
+
+                <span>
+                    Learning Progress
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         STATS
+    ================================================= -->
+
+    <div class="stats">
+
+        <div class="stat-card reveal">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <span class="stat-change">
+                    +4
+                </span>
+
+            </div>
+
+            <h3>24</h3>
+
+            <p>
+                Study Materials
+            </p>
+
+        </div>
+
+
+        <div class="stat-card reveal">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <span class="stat-change">
+                    Active
+                </span>
+
+            </div>
+
+            <h3>7 Days</h3>
+
+            <p>
+                Study Streak
+            </p>
+
+        </div>
+
+
+        <div class="stat-card reveal">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    ⏱️
+                </div>
+
+                <span class="stat-change">
+                    +12%
+                </span>
+
+            </div>
+
+            <h3>18h 40m</h3>
+
+            <p>
+                Focus Time
+            </p>
+
+        </div>
+
+
+        <div class="stat-card reveal">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <span class="stat-change">
+                    +8%
+                </span>
+
+            </div>
+
+            <h3>86%</h3>
+
+            <p>
+                Learning Progress
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         MAIN GRID
+    ================================================= -->
+
+    <div class="dashboard-grid">
+
+        <!-- CONTINUE LEARNING -->
+
+        <section
+            class="card reveal"
+            id="materials"
+        >
+
+            <div class="card-title">
+
+                <h2>
+                    Continue Learning
+                </h2>
+
+                <span>
+                    Your active subjects
+                </span>
+
+            </div>
+
+
+            <div class="learning-list">
+
+                <a
+                    href="study-materials.html"
+                    class="learning-item"
+                    style="text-decoration:none;color:inherit;"
+                >
+
+                    <div class="learning-icon">
+                        🏛️
+                    </div>
+
+                    <div class="learning-info">
+
+                        <strong>
+                            Indian Knowledge System
+                        </strong>
+
+                        <span>
+                            Chapter 1 • Introduction
+                        </span>
+
+                        <div class="learning-progress">
+                            <i style="width:78%"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="open-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+                <div class="learning-item">
+
+                    <div class="learning-icon">
+                        💻
+                    </div>
+
+                    <div class="learning-info">
+
+                        <strong>
+                            Computer Fundamentals
+                        </strong>
+
+                        <span>
+                            6 topics completed
+                        </span>
+
+                        <div class="learning-progress">
+                            <i style="width:64%"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="open-arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <div class="learning-item">
+
+                    <div class="learning-icon">
+                        📐
+                    </div>
+
+                    <div class="learning-info">
+
+                        <strong>
+                            Mathematics
+                        </strong>
+
+                        <span>
+                            8 topics completed
+                        </span>
+
+                        <div class="learning-progress">
+                            <i style="width:52%"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="open-arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <div class="learning-item">
+
+                    <div class="learning-icon">
+                        🌐
+                    </div>
+
+                    <div class="learning-info">
+
+                        <strong>
+                            Communication Skills
+                        </strong>
+
+                        <span>
+                            5 topics completed
+                        </span>
+
+                        <div class="learning-progress">
+                            <i style="width:88%"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="open-arrow">
+                        →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TODAY'S PLAN -->
+
+        <section
+            class="card reveal"
+            id="schedule"
+        >
+
+            <div class="card-title">
+
+                <h2>
+                    Today's Study Plan
+                </h2>
+
+                <span>
+                    Today
+                </span>
+
+            </div>
+
+
+            <div class="schedule">
+
+                <div class="schedule-item">
+
+                    <div class="schedule-time">
+                        08:00
+                    </div>
+
+                    <div class="schedule-info">
+
+                        <strong>
+                            IKS Revision
+                        </strong>
+
+                        <span>
+                            45 minutes
+                        </span>
+
+                    </div>
+
+                    <div class="schedule-dot"></div>
+
+                </div>
+
+
+                <div class="schedule-item">
+
+                    <div class="schedule-time">
+                        11:30
+                    </div>
+
+                    <div class="schedule-info">
+
+                        <strong>
+                            Mathematics
+                        </strong>
+
+                        <span>
+                            60 minutes
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="schedule-dot"
+                        style="background:var(--orange);"
+                    ></div>
+
+                </div>
+
+
+                <div class="schedule-item">
+
+                    <div class="schedule-time">
+                        15:00
+                    </div>
+
+                    <div class="schedule-info">
+
+                        <strong>
+                            Practice Questions
+                        </strong>
+
+                        <span>
+                            30 minutes
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="schedule-dot"
+                        style="background:var(--primary);"
+                    ></div>
+
+                </div>
+
+
+                <div class="schedule-item">
+
+                    <div class="schedule-time">
+                        19:00
+                    </div>
+
+                    <div class="schedule-info">
+
+                        <strong>
+                            Quiz Practice
+                        </strong>
+
+                        <span>
+                            25 minutes
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="schedule-dot"
+                        style="background:var(--cyan);"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- =================================================
+         SECOND GRID
+    ================================================= -->
+
+    <div class="dashboard-grid">
+
+        <!-- SUBJECTS -->
+
+        <section
+            class="card"
+            id="subjects"
+        >
+
+            <div class="card-title">
+
+                <h2>
+                    Subject Progress
+                </h2>
+
+                <span>
+                    Overall
+                </span>
+
+            </div>
+
+
+            <div class="subject-list">
+
+                <div class="subject-row">
+
+                    <div class="subject-name">
+                        IKS
+                    </div>
+
+                    <div class="subject-bar">
+                        <i style="width:86%"></i>
+                    </div>
+
+                    <div class="subject-percent">
+                        86%
+                    </div>
+
+                </div>
+
+
+                <div class="subject-row">
+
+                    <div class="subject-name">
+                        Maths
+                    </div>
+
+                    <div class="subject-bar">
+                        <i style="width:72%"></i>
+                    </div>
+
+                    <div class="subject-percent">
+                        72%
+                    </div>
+
+                </div>
+
+
+                <div class="subject-row">
+
+                    <div class="subject-name">
+                        Computer
+                    </div>
+
+                    <div class="subject-bar">
+                        <i style="width:68%"></i>
+                    </div>
+
+                    <div class="subject-percent">
+                        68%
+                    </div>
+
+                </div>
+
+
+                <div class="subject-row">
+
+                    <div class="subject-name">
+                        English
+                    </div>
+
+                    <div class="subject-bar">
+                        <i style="width:91%"></i>
+                    </div>
+
+                    <div class="subject-percent">
+                        91%
+                    </div>
+
+                </div>
+
+
+                <div class="subject-row">
+
+                    <div class="subject-name">
+                        Science
+                    </div>
+
+                    <div class="subject-bar">
+                        <i style="width:61%"></i>
+                    </div>
+
+                    <div class="subject-percent">
+                        61%
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TASKS -->
+
+        <section
+            class="card"
+            id="tasks"
+        >
+
+            <div class="card-title">
+
+                <h2>
+                    Tasks & Assignments
+                </h2>
+
+                <span>
+                    3 pending
+                </span>
+
+            </div>
+
+
+            <div class="tasks">
+
+                <div class="task done">
+
+                    <div class="task-check"></div>
+
+                    <div>
+                        <strong>
+                            Read IKS Chapter 1
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="task">
+
+                    <div class="task-check"></div>
+
+                    <div>
+                        <strong>
+                            Complete Maths exercise
+                        </strong>
+
+                        <span>
+                            Due today
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="task">
+
+                    <div class="task-check"></div>
+
+                    <div>
+                        <strong>
+                            Revise computer notes
+                        </strong>
+
+                        <span>
+                            Due tomorrow
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="task">
+
+                    <div class="task-check"></div>
+
+                    <div>
+                        <strong>
+                            Practice quiz
+                        </strong>
+
+                        <span>
+                            Due tomorrow
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- =================================================
+         FEATURES
+    ================================================= -->
+
+    <div class="bottom-grid">
+
+        <section
+            class="card mini-feature"
+            id="progress"
+        >
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <h3>
+                Study Progress
+            </h3>
+
+            <p>
+                Track your learning progress and see
+                how much of your study goals you have completed.
+            </p>
+
+            <a
+                href="#progress"
+                class="text-link"
+            >
+                View progress →
+            </a>
+
+        </section>
+
+
+        <section
+            class="card mini-feature"
+            id="planner"
+        >
+
+            <div class="feature-icon">
+                ⏱️
+            </div>
+
+            <h3>
+                Study Planner
+            </h3>
+
+            <p>
+                Organize your study sessions and create
+                a consistent daily learning routine.
+            </p>
+
+            <a
+                href="#schedule"
+                class="text-link"
+            >
+                Open planner →
+            </a>
+
+        </section>
+
+
+        <section
+            class="card mini-feature"
+            id="quizzes"
+        >
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>
+                Quizzes & Practice
+            </h3>
+
+            <p>
+                Test your knowledge with practice questions
+                and improve your understanding.
+            </p>
+
+            <a
+                href="#quizzes"
+                class="text-link"
+            >
+                Start practice →
+            </a>
+
+        </section>
+
+
+        <section
+            class="card mini-feature"
+            id="notes"
+        >
+
+            <div class="feature-icon">
+                📝
+            </div>
+
+            <h3>
+                My Notes
+            </h3>
+
+            <p>
+                Keep important study notes organized
+                so you can quickly review them later.
+            </p>
+
+            <a
+                href="#notes"
+                class="text-link"
+            >
+                View notes →
+            </a>
+
+        </section>
+
+
+        <section
+            class="card mini-feature"
+            id="bookmarks"
+        >
+
+            <div class="feature-icon">
+                🔖
+            </div>
+
+            <h3>
+                Bookmarks
+            </h3>
+
+            <p>
+                Save important chapters, topics and
+                learning resources for quick access.
+            </p>
+
+            <a
+                href="#bookmarks"
+                class="text-link"
+            >
+                View bookmarks →
+            </a>
+
+        </section>
+
+
+        <section class="card mini-feature">
+
+            <div class="feature-icon">
+                🔥
+            </div>
+
+            <h3>
+                7 Day Streak
+            </h3>
+
+            <p>
+                You have studied for seven consecutive days.
+                Keep the streak alive!
+            </p>
+
+            <a
+                href="#schedule"
+                class="text-link"
+            >
+                Keep studying →
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ================================================
+       LOGIN CHECK
+    ================================================ */
+
+    const loggedIn =
+        localStorage.getItem("loggedIn");
+
+    const storedUser =
+        localStorage.getItem("registeredUser");
+
+
+    if (
+        loggedIn !== "true" ||
+        !storedUser
+    ) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    /* ================================================
+       USER DATA
+    ================================================ */
+
+    let user;
+
+    try {
+
+        user = JSON.parse(storedUser);
+
+    } catch (error) {
+
+        localStorage.removeItem(
+            "loggedIn"
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const name =
+        user.name || "Student";
+
+    const email =
+        user.email || "";
+
+
+    const nameElement =
+        document.getElementById(
+            "dashboardName"
+        );
+
+    const emailElement =
+        document.getElementById(
+            "dashboardEmail"
+        );
+
+    const welcomeElement =
+        document.getElementById(
+            "welcomeName"
+        );
+
+    const avatarElement =
+        document.getElementById(
+            "dashboardAvatar"
+        );
+
+
+    if (nameElement)
+        nameElement.textContent = name;
+
+
+    if (emailElement)
+        emailElement.textContent = email;
+
+
+    if (welcomeElement)
+        welcomeElement.textContent = name;
+
+
+    /* ================================================
+       AVATAR INITIALS
+    ================================================ */
+
+    const initials = name
+        .trim()
+        .split(/\s+/)
+        .map(word =>
+            word.charAt(0)
+        )
+        .join("")
+        .substring(0, 2)
+        .toUpperCase();
+
+
+    if (avatarElement) {
+
+        avatarElement.textContent =
+            initials || "U";
+
+    }
+
+
+    /* ================================================
+       MENU
+    ================================================ */
+
+    const menuButton =
+        document.getElementById(
+            "menuButton"
+        );
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+    const overlay =
+        document.getElementById(
+            "overlay"
+        );
+
+
+    function toggleMenu() {
+
+        menuButton.classList.toggle(
+            "open"
+        );
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+        overlay.classList.toggle(
+            "show"
+        );
+
+    }
+
+
+    if (menuButton) {
+
+        menuButton.addEventListener(
+            "click",
+            toggleMenu
+        );
+
+    }
+
+
+    if (overlay) {
+
+        overlay.addEventListener(
+            "click",
+            toggleMenu
+        );
+
+    }
+
+
+    /* ================================================
+       CLOSE MOBILE MENU AFTER CLICK
+    ================================================ */
+
+    document
+        .querySelectorAll(".nav a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        window.innerWidth <= 850 &&
+                        sidebar.classList.contains("open")
+                    ) {
+
+                        toggleMenu();
+
+                    }
+
+                }
+            );
+
+        });
+
+
+    /* ================================================
+       TASK CHECKBOXES
+    ================================================ */
+
+    document
+        .querySelectorAll(".task")
+        .forEach(task => {
+
+            const checkbox =
+                task.querySelector(
+                    ".task-check"
+                );
+
+
+            if (!checkbox) return;
+
+
+            checkbox.addEventListener(
+                "click",
+                () => {
+
+                    task.classList.toggle(
+                        "done"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* ================================================
+       ACTIVE SIDEBAR LINK
+    ================================================ */
+
+    document
+        .querySelectorAll(".nav a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            ".nav a"
+                        )
+                        .forEach(item =>
+                            item.classList.remove(
+                                "active"
+                            )
+                        );
+
+                    link.classList.add(
+                        "active"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* ================================================
+       LOGOUT
+    ================================================ */
+
+    const logoutButton =
+        document.getElementById(
+            "logoutButton"
+        );
+
+
+    if (logoutButton) {
+
+        logoutButton.addEventListener(
+            "click",
+            (event) => {
+
+                event.preventDefault();
+
+
+                localStorage.removeItem(
+                    "loggedIn"
+                );
+
+                localStorage.removeItem(
+                    "userEmail"
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+    }
+
+
+    /* ================================================
+       PREVENT SIDEBAR JUMP FOR # LINKS
+    ================================================ */
+
+    document
+        .querySelectorAll(
+            'a[href="#"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => event.preventDefault()
+            );
+
+        });
+
+});
+
+</script>
+
+</body>
+</html>

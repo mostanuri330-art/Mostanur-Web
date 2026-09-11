@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Chapter 1 - Indian Knowledge System</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8fafc,
+                    #e0f2fe
+                );
+
+            color: #222;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+
+        /* BACK BUTTON */
+
+        .back-button {
+            display: inline-block;
+
+            background: #111827;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 20px;
+
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+
+            transition: 0.3s;
+
+            animation: slideLeft 0.7s ease;
+        }
+
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            background: #4f46e5;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            text-align: center;
+
+            padding: 30px 20px;
+
+            margin-bottom: 25px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed,
+                    #2563eb
+                );
+
+            color: white;
+
+            box-shadow:
+                0 15px 35px rgba(79, 70, 229, 0.25);
+
+            animation: fadeDown 1s ease;
+        }
+
+
+        .header .chapter-number {
+            font-size: 15px;
+
+            letter-spacing: 3px;
+
+            opacity: 0.9;
+
+            margin-bottom: 10px;
+        }
+
+
+        .header h1 {
+            margin: 0;
+
+            font-size: 36px;
+
+            animation: zoomIn 1s ease;
+        }
+
+
+        .header p {
+            margin-top: 12px;
+
+            font-size: 17px;
+
+            opacity: 0.9;
+        }
+
+
+        /* CONTENT CARD */
+
+        .content-card {
+            background: white;
+
+            padding: 30px;
+
+            margin-bottom: 22px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.08);
+
+            animation: fadeUp 0.9s ease;
+
+            transition: 0.3s;
+        }
+
+
+        .content-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+
+        .content-card h2 {
+            margin-top: 0;
+
+            color: #4f46e5;
+
+            font-size: 24px;
+        }
+
+
+        .content-card p {
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            color: #444;
+        }
+
+
+        /* IMPORTANT BOX */
+
+        .important-box {
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #e0e7ff
+                );
+
+            border-left: 5px solid #4f46e5;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            margin-top: 20px;
+
+            animation: fadeUp 1s ease;
+        }
+
+
+        .important-box h3 {
+            margin-top: 0;
+
+            color: #3730a3;
+        }
+
+
+        /* LIST */
+
+        .content-card ul {
+            padding-left: 25px;
+        }
+
+
+        .content-card li {
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            margin-bottom: 8px;
+
+            transition: 0.2s;
+        }
+
+
+        .content-card li:hover {
+            transform: translateX(5px);
+
+            color: #4f46e5;
+        }
+
+
+        /* PDF BUTTON */
+
+        .pdf-area {
+            text-align: center;
+
+            margin-top: 30px;
+
+            padding: 30px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.08);
+
+            animation: fadeUp 1.2s ease;
+        }
+
+
+        .pdf-button {
+            display: inline-block;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            font-size: 16px;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 8px 20px rgba(79, 70, 229, 0.3);
+        }
+
+
+        .pdf-button:hover {
+            transform:
+                translateY(-4px)
+                scale(1.03);
+
+            box-shadow:
+                0 12px 28px rgba(79, 70, 229, 0.4);
+        }
+
+
+        /* ANIMATIONS */
+
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        @keyframes slideLeft {
+
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        }
+
+
+        @keyframes zoomIn {
+
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 20px 12px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .content-card {
+                padding: 22px;
+            }
+
+            .content-card h2 {
+                font-size: 21px;
+            }
+
+            .content-card p,
+            .content-card li {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- BACK -->
+
+        <a href="indian-knowledge-system.html"
+           class="back-button">
+
+            ← Back to Chapters
+
+        </a>
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="chapter-number">
+                CHAPTER 01
+            </div>
+
+            <h1>
+                📚 Indian Knowledge System
+            </h1>
+
+            <p>
+                Introduction and Basic Concepts
+            </p>
+
+        </div>
+
+
+        <!-- INTRODUCTION -->
+
+        <div class="content-card">
+
+            <h2>
+                🌟 Introduction
+            </h2>
+
+            <p>
+                Indian Knowledge System (IKS) represents
+                the knowledge, traditions, ideas and
+                practices that developed in India over
+                thousands of years.
+            </p>
+
+            <p>
+                It covers many different areas including
+                education, philosophy, mathematics,
+                science, medicine, culture, literature
+                and art.
+            </p>
+
+        </div>
+
+
+        <!-- MEANING -->
+
+        <div class="content-card">
+
+            <h2>
+                📖 1. Meaning of Indian Knowledge System
+            </h2>
+
+            <p>
+                Indian Knowledge System includes various
+                forms of knowledge developed through
+                observation, experience, research and
+                learning.
+            </p>
+
+
+            <div class="important-box">
+
+                <h3>
+                    💡 Important
+                </h3>
+
+                <p>
+                    IKS connects traditional knowledge
+                    with human life, society, nature
+                    and values.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="content-card">
+
+            <h2>
+                ⭐ 2. Important Features
+            </h2>
+
+            <ul>
+
+                <li>
+                    Long historical tradition
+                </li>
+
+                <li>
+                    Knowledge from different fields
+                </li>
+
+                <li>
+                    Importance of practical knowledge
+                </li>
+
+                <li>
+                    Connection between knowledge and life
+                </li>
+
+                <li>
+                    Importance of values and ethics
+                </li>
+
+                <li>
+                    Respect for nature and environment
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- IMPORTANCE -->
+
+        <div class="content-card">
+
+            <h2>
+                🎯 3. Importance of Indian Knowledge System
+            </h2>
+
+            <p>
+                The Indian Knowledge System helps us
+                understand India's intellectual,
+                cultural and scientific heritage.
+            </p>
+
+            <p>
+                It also provides an opportunity to
+                understand traditional knowledge and
+                connect it with modern education,
+                research and society.
+            </p>
+
+        </div>
+
+
+        <!-- EXAMPLES -->
+
+        <div class="content-card">
+
+            <h2>
+                🔍 4. Examples
+            </h2>
+
+            <ul>
+
+                <li>
+                    Yoga
+                </li>
+
+                <li>
+                    Ayurveda
+                </li>
+
+                <li>
+                    Indian Mathematics
+                </li>
+
+                <li>
+                    Astronomy
+                </li>
+
+                <li>
+                    Indian Philosophy
+                </li>
+
+                <li>
+                    Ancient Education System
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- PDF -->
+
+        <div class="pdf-area">
+
+            <h2>
+                📄 Chapter 1 PDF
+            </h2>
+
+            <p>
+                You can also read the complete PDF.
+            </p>
+
+            <a href="materials/IKS-Chapter-1.pdf"
+               target="_blank"
+               class="pdf-button">
+
+                📖 Open Chapter 1 PDF
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

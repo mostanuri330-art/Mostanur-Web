@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="auth-page">
+
+    <div class="auth-card">
+
+        <a href="index.html" class="auth-logo">MOSTANUR</a>
+
+        <h1>Welcome Back</h1>
+
+        <p class="auth-subtitle">
+            Login to access your profile.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="password-toggle"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="button button-dark auth-button"
+            >
+                Login
+            </button>
+
+            <p id="loginMessage" class="form-message"></p>
+
+        </form>
+
+        <p class="auth-footer">
+            Don't have an account?
+            <a href="register.html">Create Account</a>
+        </p>
+
+    </div>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("loginMessage");
+    const togglePassword =
+        document.getElementById("togglePassword");
+
+    /* =========================
+       Show / Hide Password
+    ========================= */
+
+    togglePassword.addEventListener("click", () => {
+
+        const password =
+            document.getElementById("password");
+
+        if (password.type === "password") {
+
+            password.type = "text";
+            togglePassword.textContent = "Hide";
+
+        } else {
+
+            password.type = "password";
+            togglePassword.textContent = "Show";
+
+        }
+    });
+
+
+    /* =========================
+       Login
+    ========================= */
+
+    form.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email")
+                .value
+                .trim()
+                .toLowerCase();
+
+        const password =
+            document.getElementById("password").value;
+
+        const registeredUser =
+            JSON.parse(
+                localStorage.getItem("registeredUser")
+            );
+
+        message.textContent = "";
+        message.className = "form-message";
+
+
+        // No account
+        if (!registeredUser) {
+
+            message.textContent =
+                "No account found. Please register first.";
+
+            message.classList.add("error");
+
+            return;
+        }
+
+
+        // Wrong login
+        if (
+            email !== registeredUser.email ||
+            password !== registeredUser.password
+        ) {
+
+            message.textContent =
+                "Incorrect email or password.";
+
+            message.classList.add("error");
+
+            return;
+        }
+
+
+        // Successful login
+        localStorage.setItem(
+            "loggedIn",
+            "true"
+        );
+
+        localStorage.setItem(
+            "userEmail",
+            registeredUser.email
+        );
+
+
+        message.textContent =
+            "Successfull....";
+
+        message.classList.add("success");
+
+
+        window.location.href = "dashboard.html";
+
+    });
+
+});
+</script>
+
+</body>
+</html>

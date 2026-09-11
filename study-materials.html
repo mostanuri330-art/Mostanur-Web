@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Study Materials</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8fafc,
+                    #e0f2fe
+                );
+
+            color: #222;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        .study-page {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 30px 20px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .study-header {
+            position: relative;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed,
+                    #2563eb
+                );
+
+            color: white;
+
+            box-shadow:
+                0 15px 35px rgba(79, 70, 229, 0.25);
+
+            animation: fadeDown 0.9s ease;
+        }
+
+
+        .study-header h1 {
+            margin: 10px 0 0;
+
+            font-size: 38px;
+
+            animation: zoomIn 0.9s ease;
+        }
+
+
+       /* =========================
+   ANIMATED BACK BUTTON
+========================= */
+
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        color 0.35s ease,
+        box-shadow 0.35s ease;
+
+    animation: backButtonAppear 0.8s ease;
+}
+
+
+/* Arrow */
+
+.back-arrow {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    font-size: 18px;
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease;
+}
+
+
+/* Hover */
+
+.back-button:hover {
+    background: white;
+
+    color: #4f46e5;
+
+    transform:
+        translateX(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Arrow hover animation */
+
+.back-button:hover .back-arrow {
+    transform: translateX(-5px);
+
+    background: #eef2ff;
+}
+
+
+/* Click animation */
+
+.back-button:active {
+    transform:
+        translateX(-2px)
+        scale(0.97);
+}
+
+
+/* Opening animation */
+
+@keyframes backButtonAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-40px)
+            scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .back-button {
+        left: 12px;
+        top: 12px;
+
+        padding: 8px 13px;
+
+        font-size: 12px;
+    }
+
+    .back-arrow {
+        width: 24px;
+        height: 24px;
+
+        font-size: 16px;
+    }
+}
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .study-search-box {
+            margin-bottom: 25px;
+
+            animation: fadeUp 0.8s ease;
+        }
+
+
+        .study-search-box input {
+            width: 100%;
+
+            padding: 16px 20px;
+
+            border: none;
+
+            outline: none;
+
+            border-radius: 14px;
+
+            background: white;
+
+            font-size: 16px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .study-search-box input:focus {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(79, 70, 229, 0.18);
+
+            outline: 2px solid #4f46e5;
+        }
+
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+        .study-categories {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-bottom: 30px;
+
+            animation: fadeUp 1s ease;
+        }
+
+
+        .category-btn {
+            border: none;
+
+            cursor: pointer;
+
+            padding: 11px 17px;
+
+            border-radius: 25px;
+
+            background: white;
+
+            color: #333;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.07);
+
+            transition: 0.3s;
+        }
+
+
+        .category-btn:hover {
+            transform:
+                translateY(-3px)
+                scale(1.03);
+
+            color: #4f46e5;
+        }
+
+
+        .category-btn.active {
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            box-shadow:
+                0 7px 20px rgba(79, 70, 229, 0.3);
+        }
+
+
+        /* =========================
+           MATERIAL GRID
+        ========================= */
+
+        .study-material-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(290px, 1fr));
+
+            gap: 22px;
+        }
+
+
+        /* =========================
+           MATERIAL CARD
+        ========================= */
+
+        .material-card {
+            position: relative;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.08);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+            animation: cardAppear 0.8s ease both;
+        }
+
+
+        /* Staggered animation */
+
+        .material-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .material-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .material-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .material-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .material-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .material-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+
+        /* Top gradient line */
+
+        .material-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #7c3aed,
+                    #2563eb
+                );
+        }
+
+
+        /* Hover */
+
+        .material-card:hover {
+            transform:
+                translateY(-9px)
+                scale(1.01);
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.14);
+        }
+
+
+        /* =========================
+           ICON
+        ========================= */
+
+        .material-icon {
+            min-width: 60px;
+
+            height: 60px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #e0e7ff
+                );
+
+            font-size: 30px;
+
+            transition: 0.3s;
+        }
+
+
+        .material-card:hover .material-icon {
+            transform:
+                rotate(-8deg)
+                scale(1.12);
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .material-content {
+            flex: 1;
+        }
+
+
+        .material-content h3 {
+            margin: 0 0 10px;
+
+            font-size: 20px;
+
+            color: #1f2937;
+        }
+
+
+        .material-content p {
+            margin: 0 0 14px;
+
+            color: #666;
+
+            line-height: 1.6;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           MATERIAL TYPE
+        ========================= */
+
+        .material-type {
+            display: inline-block;
+
+            margin-bottom: 16px;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           CLICK HERE BUTTON
+        ========================= */
+
+        .material-download {
+            display: block;
+
+            width: fit-content;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 18px;
+
+            border-radius: 9px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 6px 15px rgba(79, 70, 229, 0.25);
+        }
+
+
+        .material-download:hover {
+            transform:
+                translateY(-3px)
+                scale(1.04);
+
+            box-shadow:
+                0 10px 25px rgba(79, 70, 229, 0.4);
+        }
+
+
+        /* =========================
+           NO MATERIALS
+        ========================= */
+
+        .no-materials {
+            text-align: center;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            color: #666;
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.07);
+        }
+
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(-35px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes slideLeft {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+
+        @keyframes zoomIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+
+        }
+
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(45px)
+                    scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .study-page {
+                padding: 20px 12px;
+            }
+
+
+            .study-header {
+                padding: 80px 15px 30px;
+            }
+
+
+            .study-header h1 {
+                font-size: 29px;
+            }
+
+
+            .back-button {
+                left: 15px;
+                top: 15px;
+            }
+
+
+            .study-material-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .material-card {
+                padding: 20px;
+            }
+
+
+            .material-content h3 {
+                font-size: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="study-page">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="study-header">
+
+
+            <a href="dashboard.html"
+               class="back-button">
+
+                ← Back
+
+            </a>
+
+
+            <h1>
+                📚 Study Materials
+            </h1>
+
+
+        </div>
+
+
+        <!-- =========================
+             SEARCH
+        ========================= -->
+
+        <div class="study-search-box">
+
+            <input
+                type="text"
+                id="materialSearch"
+                placeholder="🔍 Search study materials..."
+            >
+
+        </div>
+
+
+        <!-- =========================
+             CATEGORIES
+        ========================= -->
+
+        <div class="study-categories">
+
+
+            <button
+                class="category-btn active"
+                data-category="all">
+
+                All
+
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="B.A. 4th Year notes">
+
+                B.A. 4th year notes
+
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Previous Years questions">
+
+                Previous Years Questions
+
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Doubt clear video">
+
+                Doubt clear Video
+
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Education">
+
+                Education
+
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="UGC NET">
+
+                UGC NET
+
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Basic of all">
+
+                Basic of all
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =========================
+             MATERIALS
+        ========================= -->
+
+        <div
+            class="study-material-grid"
+            id="materialGrid">
+
+
+            <!-- INDIAN KNOWLEDGE SYSTEM -->
+
+            <div
+                class="material-card"
+                data-category="B.A. 4th Year notes">
+
+
+                <div class="material-icon">
+                    📚
+                </div>
+
+
+                <div class="material-content">
+
+                    <h3>
+                        INDIAN KNOWLEDGE SYSTEM
+                    </h3>
+
+
+                    <p>
+                        Complete chapter-wise notes of
+                        Indian Knowledge System.
+                    </p>
+
+
+                    <span class="material-type">
+                        B.A. 4th year notes
+                    </span>
+
+
+                    <a
+                        href="indian-knowledge-system.html"
+                        class="material-download">
+
+                        👉 Click Here
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- INCLUSIVE EDUCATION -->
+
+            <div
+                class="material-card"
+                data-category="B.A. 4th Year notes">
+
+
+                <div class="material-icon">
+                    💻
+                </div>
+
+
+                <div class="material-content">
+
+                    <h3>
+                        INCLUSIVE EDUCATION
+                    </h3>
+
+
+                    <p>
+                        Inclusive Education.
+                    </p>
+
+
+                    <span class="material-type">
+                        B.A. 4th year notes
+                    </span>
+
+
+                    <a
+                        href="materials/Inclusive-Education.pdf"
+                        class="material-download"
+                        target="_blank">
+
+                        👉 Click Here
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADULT AND CONTINUING EDUCATION -->
+
+            <div
+                class="material-card"
+                data-category="Education">
+
+
+                <div class="material-icon">
+                    📚
+                </div>
+
+
+                <div class="material-content">
+
+                    <h3>
+                        ADULT AND CONTINUING EDUCATION
+                    </h3>
+
+
+                    <p>
+                        All important notes.
+                    </p>
+
+
+                    <span class="material-type">
+                        ADULT AND CONTINUING EDUCATION
+                    </span>
+
+
+                    <a
+                        href="materials/Adult-and-Continuing-Education.pdf"
+                        class="material-download"
+                        target="_blank">
+
+                        👉 Click Here
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADVANCED RESEARCH METHODOLOGY -->
+
+            <div
+                class="material-card"
+                data-category="Education">
+
+
+                <div class="material-icon">
+                    🔬
+                </div>
+
+
+                <div class="material-content">
+
+                    <h3>
+                        ADVANCED RESEARCH METHODOLOGY
+                    </h3>
+
+
+                    <p>
+                        Important notes of Research Methodology.
+                    </p>
+
+
+                    <span class="material-type">
+                        Education Major
+                    </span>
+
+
+                    <a
+                        href="materials/Advanced-Research-Methodology.pdf"
+                        class="material-download"
+                        target="_blank">
+
+                        👉 Click Here
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREVIOUS YEAR QUESTION PAPER -->
+
+            <div
+                class="material-card"
+                data-category="Previous Years questions">
+
+
+                <div class="material-icon">
+                    📝
+                </div>
+
+
+                <div class="material-content">
+
+                    <h3>
+                        Previous Year Question Paper
+                    </h3>
+
+
+                    <p>
+                        Previous year examination questions.
+                    </p>
+
+
+                    <span class="material-type">
+                        All Question Paper
+                    </span>
+
+
+                    <a
+                        href="materials/Previous-Year-Question-Paper.pdf"
+                        class="material-download"
+                        target="_blank">
+
+                        👉 Click Here
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALL LEFTOUT MATERIALS -->
+
+            <div
+                class="material-card"
+                data-category="Basic of all">
+
+
+                <div class="material-icon">
+                    📂
+                </div>
+
+
+                <div class="material-content">
+
+                    <h3>
+                        ALL LEFTOUT MATERIALS
+                    </h3>
+
+
+                    <p>
+                        All leftout notes.
+                    </p>
+
+
+                    <span class="material-type">
+                        Basic of all
+                    </span>
+
+
+                    <a
+                        href="materials/All-Leftout-Materials.pdf"
+                        class="material-download"
+                        target="_blank">
+
+                        👉 Click Here
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- NO MATERIALS -->
+
+        <p
+            id="noMaterials"
+            class="no-materials"
+            style="display:none;">
+
+            No study materials found.
+
+        </p>
+
+
+    </main>
+
+
+    <!-- =========================
+         SEARCH & CATEGORY SCRIPT
+    ========================= -->
+
+    <script>
+
+        const searchInput =
+            document.getElementById("materialSearch");
+
+
+        const cards =
+            document.querySelectorAll(".material-card");
+
+
+        const categoryButtons =
+            document.querySelectorAll(".category-btn");
+
+
+        const noMaterials =
+            document.getElementById("noMaterials");
+
+
+        let selectedCategory = "all";
+
+
+        function filterMaterials() {
+
+            const searchText =
+                searchInput.value.toLowerCase();
+
+
+            let visibleCount = 0;
+
+
+            cards.forEach(card => {
+
+                const text =
+                    card.innerText.toLowerCase();
+
+
+                const category =
+                    card.dataset.category;
+
+
+                const matchesSearch =
+                    text.includes(searchText);
+
+
+                const matchesCategory =
+                    selectedCategory === "all" ||
+                    category === selectedCategory;
+
+
+                if (
+                    matchesSearch &&
+                    matchesCategory
+                ) {
+
+                    card.style.display = "flex";
+
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            noMaterials.style.display =
+                visibleCount === 0
+                    ? "block"
+                    : "none";
+
+        }
+
+
+        /* SEARCH */
+
+        searchInput.addEventListener(
+            "input",
+            filterMaterials
+        );
+
+
+        /* CATEGORY BUTTONS */
+
+        categoryButtons.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    categoryButtons.forEach(btn => {
+
+                        btn.classList.remove("active");
+
+                    });
+
+
+                    button.classList.add("active");
+
+
+                    selectedCategory =
+                        button.dataset.category;
+
+
+                    filterMaterials();
+
+                }
+            );
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

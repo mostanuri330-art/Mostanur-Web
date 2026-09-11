@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Indian Knowledge System</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8fafc,
+                    #e0f2fe
+                );
+
+            color: #222;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+
+      /* =========================
+   ANIMATED BACK BUTTON
+========================= */
+
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        color 0.35s ease,
+        box-shadow 0.35s ease;
+
+    animation: backButtonAppear 0.8s ease;
+}
+
+
+/* Arrow */
+
+.back-arrow {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    font-size: 18px;
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease;
+}
+
+
+/* Hover */
+
+.back-button:hover {
+    background: white;
+
+    color: #4f46e5;
+
+    transform:
+        translateX(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Arrow hover animation */
+
+.back-button:hover .back-arrow {
+    transform: translateX(-5px);
+
+    background: #eef2ff;
+}
+
+
+/* Click animation */
+
+.back-button:active {
+    transform:
+        translateX(-2px)
+        scale(0.97);
+}
+
+
+/* Opening animation */
+
+@keyframes backButtonAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-40px)
+            scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .back-button {
+        left: 12px;
+        top: 12px;
+
+        padding: 8px 13px;
+
+        font-size: 12px;
+    }
+
+    .back-arrow {
+        width: 24px;
+        height: 24px;
+
+        font-size: 16px;
+    }
+}
+
+
+        /* HEADER */
+
+        .header {
+            text-align: center;
+
+            padding: 40px 20px;
+
+            margin-bottom: 35px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed,
+                    #2563eb
+                );
+
+            color: white;
+
+            box-shadow:
+                0 15px 35px rgba(79, 70, 229, 0.25);
+
+            animation: fadeDown 1s ease;
+        }
+
+
+        .header-icon {
+            font-size: 55px;
+
+            display: inline-block;
+
+            animation: floating 2.5s ease-in-out infinite;
+        }
+
+
+        .header h1 {
+            margin: 10px 0;
+
+            font-size: 38px;
+
+            animation: zoomIn 1s ease;
+        }
+
+
+        .header p {
+            margin: 0;
+
+            font-size: 17px;
+
+            opacity: 0.9;
+        }
+
+
+        /* CHAPTER TITLE */
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            animation: fadeUp 0.8s ease;
+        }
+
+
+        .section-title h2 {
+            margin: 0;
+
+            color: #312e81;
+
+            font-size: 28px;
+        }
+
+
+        .section-title p {
+            color: #666;
+
+            margin-top: 8px;
+        }
+
+
+        /* CHAPTER GRID */
+
+        .chapters {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 22px;
+        }
+
+
+        /* CHAPTER CARD */
+
+        .chapter {
+            position: relative;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.08);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+            animation: cardAppear 0.8s ease both;
+        }
+
+
+        /* Different animation delays */
+
+        .chapter:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .chapter:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .chapter:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .chapter:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .chapter:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .chapter:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+
+        /* CARD HOVER */
+
+        .chapter:hover {
+            transform:
+                translateY(-10px)
+                scale(1.02);
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* TOP DECORATION */
+
+        .chapter::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #7c3aed,
+                    #2563eb
+                );
+        }
+
+
+        /* CHAPTER NUMBER */
+
+        .chapter-number {
+            color: #4f46e5;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* CHAPTER ICON */
+
+        .chapter-icon {
+            font-size: 42px;
+
+            margin-bottom: 12px;
+
+            display: inline-block;
+
+            transition: 0.3s;
+        }
+
+
+        .chapter:hover .chapter-icon {
+            transform:
+                rotate(-8deg)
+                scale(1.15);
+        }
+
+
+        /* CHAPTER HEADING */
+
+        .chapter h2 {
+            margin: 0 0 12px;
+
+            font-size: 21px;
+
+            color: #1f2937;
+        }
+
+
+        /* DESCRIPTION */
+
+        .chapter p {
+            color: #666;
+
+            line-height: 1.6;
+
+            font-size: 16px;
+
+            min-height: 70px;
+        }
+
+
+        /* BUTTON */
+
+        .chapter-button {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 6px 15px rgba(79, 70, 229, 0.25);
+        }
+
+
+        .chapter-button:hover {
+            transform:
+                translateY(-3px)
+                scale(1.04);
+
+            box-shadow:
+                0 10px 25px rgba(79, 70, 229, 0.4);
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 40px;
+
+            padding: 20px;
+
+            color: #666;
+
+            animation: fadeUp 1.5s ease;
+        }
+
+
+        /* ANIMATIONS */
+
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(-35px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes slideLeft {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+
+        @keyframes zoomIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+
+        }
+
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-10px);
+            }
+
+        }
+
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(45px)
+                    scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 20px 12px;
+            }
+
+            .header {
+                padding: 30px 15px;
+            }
+
+            .header h1 {
+                font-size: 29px;
+            }
+
+            .header-icon {
+                font-size: 45px;
+            }
+
+            .chapter {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- BACK BUTTON -->
+
+        <a href="./study-materials.html"
+           class="back-button">
+
+            ← Back
+
+        </a>
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="header-icon">
+                📚
+            </div>
+
+            <h1>
+                Indian Knowledge System
+            </h1>
+
+            <p>
+                Explore chapter-wise study materials
+            </p>
+
+        </div>
+
+
+        <!-- SECTION TITLE -->
+
+        <div class="section-title">
+
+            <h2>
+                📖 Chapters
+            </h2>
+
+            <p>
+                Select a chapter to continue learning
+            </p>
+
+        </div>
+
+
+        <!-- CHAPTERS -->
+
+        <div class="chapters">
+
+
+            <!-- CHAPTER 01 -->
+
+            <div class="chapter">
+
+                <div class="chapter-icon">
+                    🌟
+                </div>
+
+                <div class="chapter-number">
+                    CHAPTER 01
+                </div>
+
+                <h2>
+                    Introduction to Indian Knowledge System
+                </h2>
+
+                <p>
+                    Introduction and basic concepts of
+                    Indian Knowledge System.
+                </p>
+
+                <a href="iks-chapter-1.html"
+                   class="chapter-button">
+
+                    📖 Click Here
+
+                </a>
+
+            </div>
+
+
+            <!-- CHAPTER 02 -->
+
+            <div class="chapter">
+
+                <div class="chapter-icon">
+                    🏛️
+                </div>
+
+                <div class="chapter-number">
+                    CHAPTER 02
+                </div>
+
+                <h2>
+                    Ancient Indian Education
+                </h2>
+
+                <p>
+                    Important information about ancient
+                    Indian education.
+                </p>
+
+                <a href="./materials/IKS-Chapter-2.pdf"
+                   target="_blank"
+                   class="chapter-button">
+
+                    📖 Click Here
+
+                </a>
+
+            </div>
+
+
+            <!-- CHAPTER 03 -->
+
+            <div class="chapter">
+
+                <div class="chapter-icon">
+                    🧠
+                </div>
+
+                <div class="chapter-number">
+                    CHAPTER 03
+                </div>
+
+                <h2>
+                    Indian Philosophy
+                </h2>
+
+                <p>
+                    Important concepts of Indian
+                    philosophy.
+                </p>
+
+                <a href="./materials/IKS-Chapter-3.pdf"
+                   target="_blank"
+                   class="chapter-button">
+
+                    📖 Click Here
+
+                </a>
+
+            </div>
+
+
+            <!-- CHAPTER 04 -->
+
+            <div class="chapter">
+
+                <div class="chapter-icon">
+                    🔬
+                </div>
+
+                <div class="chapter-number">
+                    CHAPTER 04
+                </div>
+
+                <h2>
+                    Indian Science and Technology
+                </h2>
+
+                <p>
+                    Indian contributions to science,
+                    mathematics and technology.
+                </p>
+
+                <a href="./materials/IKS-Chapter-4.pdf"
+                   target="_blank"
+                   class="chapter-button">
+
+                    📖 Click Here
+
+                </a>
+
+            </div>
+
+
+            <!-- CHAPTER 05 -->
+
+            <div class="chapter">
+
+                <div class="chapter-icon">
+                    🎭
+                </div>
+
+                <div class="chapter-number">
+                    CHAPTER 05
+                </div>
+
+                <h2>
+                    Indian Culture and Heritage
+                </h2>
+
+                <p>
+                    Important topics related to Indian
+                    culture and heritage.
+                </p>
+
+                <a href="./materials/IKS-Chapter-5.pdf"
+                   target="_blank"
+                   class="chapter-button">
+
+                    📖 Click Here
+
+                </a>
+
+            </div>
+
+
+            <!-- CHAPTER 06 -->
+
+            <div class="chapter">
+
+                <div class="chapter-icon">
+                    💡
+                </div>
+
+                <div class="chapter-number">
+                    CHAPTER 06
+                </div>
+
+                <h2>
+                    Important Contributions
+                </h2>
+
+                <p>
+                    Important contributions of Indian
+                    scholars and thinkers.
+                </p>
+
+                <a href="./materials/IKS-Chapter-6.pdf"
+                   target="_blank"
+                   class="chapter-button">
+
+                    📖 Click Here
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <p>
+                📚 Keep learning • Keep exploring • Keep growing
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
